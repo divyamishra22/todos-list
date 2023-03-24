@@ -4,6 +4,8 @@ import Header from "./My Components/Header";        // since,Header is default e
 //import { TodoItem } from './My Components/TodoItem';  
 import { Todos } from './My Components/Todos';
 import React, { useState } from 'react';
+import { Addtodo } from './My Components/AddTodo';
+
 
 function App() {
   const onDelete =(todo) =>{
@@ -32,6 +34,7 @@ function App() {
   return (
     <>
     <Header title={"TODOS"} />
+   <Addtodo/>
     <Todos todos={todos} onDelete={onDelete}/>
     </>
   );
