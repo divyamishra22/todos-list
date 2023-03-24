@@ -14,7 +14,8 @@ export const Addtodo = ({addTodo}) => {
         }
         else {
             addTodo(title, desc);
-            
+            settitle("");
+            setdesc("");
         }
     }
     return (

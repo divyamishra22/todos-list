@@ -4,19 +4,39 @@ import Header from "./My Components/Header";        // since,Header is default e
 //import { TodoItem } from './My Components/TodoItem';  
 import { Todos } from './My Components/Todos';
 import React, { useState } from 'react';
-import { Addtodo } from './My Components/AddTodo';                 //addTodo defined in Addtodo needs to implemted
+import { Addtodo } from './My Components/AddTodo';
+//import {About} from './My Components/About';                //addTodo defined in Addtodo needs to implemted
+import {useEffect } from 'react';
+//import {
+ // BrowserRouter as Router,
+ //Switch,
+ // Route
+//} from "react-router-dom";
 
 
 function App() {
+  let initTodo;
+  if (localStorage.getItem("todos") === null) {
+    initTodo = [];
+  }
+  else {
+    initTodo = JSON.parse(localStorage.getItem("todos"));
+  }
   const onDelete =(todo) =>{
     console.log("on delete of todo", todo);
     settodos(todos.filter((e)=> {
       return e!== todo;
-    }))
+    }));
+    console.log("deleted", todos)
+    localStorage.setItem("todos", JSON.stringify(todos));
   }
-  const addTodo = (title,desc) =>{
+  const addTodo = (title,desc) => {
+    let sno;
     console.log("adding a todo");
-    let sno = todos[todos.length-1].sno +1;
+    if (todos.length === 0) {
+      sno = 0;}
+      else{
+     sno = todos[todos.length-1].sno +1; }
     const myTodo ={
       sno:sno,
       title:title,
@@ -25,28 +45,16 @@ function App() {
     settodos([...todos,myTodo]);
     console.log(myTodo);
   }
-  const [todos, settodos] = useState([
-  {
-    sno:1,
-    title:"Market",
-    desc:"Go to Market"
-  },
-  {
-    sno:2,
-    title:"Shopping",
-    desc:"Go to Shopping"
-  },
-  {
-    sno:3,
-    title:"Temple",
-    desc:"Go to Temple"
-  }
- ]);
+  const [todos, settodos] = useState([initTodo]);
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos])
   return (
     <>
-    <Header title={"TODOS"} />
-   <Addtodo addtodo={addTodo}/>
-    <Todos todos={todos} onDelete={onDelete}/>
+    
+      <Header title="My Todos List" searchBar={false} /> 
+      <Addtodo addTodo={addTodo} />
+      <Todos todos={todos} onDelete={onDelete} /> 
     </>
   );
 }
