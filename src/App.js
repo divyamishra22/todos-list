@@ -5,6 +5,9 @@ import Header from "./My Components/Header";        // since,Header is default e
 import { Todos } from './My Components/Todos';
 
 function App() {
+  const onDelete =() =>{
+    console.log("on delete");
+  }
  let todos = [
   {
     sno:1,
@@ -25,7 +28,7 @@ function App() {
   return (
     <>
     <Header title={"TODOS"} />
-    <Todos todos={todos}/>
+    <Todos todos={todos} onDelete={onDelete}/>
     </>
   );
 }
