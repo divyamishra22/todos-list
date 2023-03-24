@@ -5,7 +5,8 @@ export const Todos = ({todos}) => {              //todos to get todos at index =
   return (
     <div className='text-center'>
         <h3 className="text-center">LIST</h3>
-        <TodoItem todoitem={todos[0]}/>           
+        {todos.map((todo)=>{
+          return  <TodoItem todoitem={todo}/> }) }       
     </div>
   )
 }
