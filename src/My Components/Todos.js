@@ -5,9 +5,11 @@ export const Todos = ({todos , onDelete}) => {              //todos to get todos
   return (
     <div className='text-center'>
         <h3 className="text-center">LIST</h3>
-        {todos.map((todo)=>{
+        {todos.length==0? "No Todos to Display":
+        todos.map((todo)=>{
           return  <TodoItem todoitem={todo} key={todo.sno} onDelete={onDelete}/> 
-        }) }       
+        }) }  
+             
     </div>
   )
 }
