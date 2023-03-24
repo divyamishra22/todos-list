@@ -3,12 +3,16 @@ import './App.css';
 import Header from "./My Components/Header";        // since,Header is default export therefore, no brackets req.
 //import { TodoItem } from './My Components/TodoItem';  
 import { Todos } from './My Components/Todos';
+import React, { useState } from 'react';
 
 function App() {
-  const onDelete =() =>{
-    console.log("on delete");
+  const onDelete =(todo) =>{
+    console.log("on delete of todo", todo);
+    settodos(todos.filter((e)=> {
+      return e!== todo;
+    }))
   }
- let todos = [
+  const [todos, settodos] = useState([
   {
     sno:1,
     title:"Market",
@@ -24,7 +28,7 @@ function App() {
     title:"Temple",
     desc:"Go to Temple"
   }
- ]
+ ]);
   return (
     <>
     <Header title={"TODOS"} />

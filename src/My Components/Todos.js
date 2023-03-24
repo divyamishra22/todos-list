@@ -6,7 +6,7 @@ export const Todos = ({todos , onDelete}) => {              //todos to get todos
     <div className='text-center'>
         <h3 className="text-center">LIST</h3>
         {todos.map((todo)=>{
-          return  <TodoItem todoitem={todo} onDelete={onDelete}/> 
+          return  <TodoItem todoitem={todo} key={todo.sno} onDelete={onDelete}/> 
         }) }       
     </div>
   )
