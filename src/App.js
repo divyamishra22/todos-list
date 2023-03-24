@@ -22,6 +22,7 @@ function App() {
       title:title,
       desc:desc,
     }
+    settodos([...todos,myTodo]);
     console.log(myTodo);
   }
   const [todos, settodos] = useState([
